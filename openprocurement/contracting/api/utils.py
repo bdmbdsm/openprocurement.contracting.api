@@ -8,7 +8,7 @@ from openprocurement.api.utils import (
     error_handler, get_revision_changes, context_unpack, apply_data_patch,
     generate_id, set_modetest_titles, get_now,
 )
-from openprocurement.api.models import Revision
+from openprocurement.api.models.auction_models.models import Revision
 
 from openprocurement.contracting.api.traversal import factory
 from openprocurement.contracting.api.models import Contract

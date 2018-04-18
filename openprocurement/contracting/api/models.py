@@ -9,20 +9,25 @@ from schematics.types.serializable import serializable
 from schematics.exceptions import ValidationError
 from schematics.transforms import whitelist, blacklist
 from openprocurement.api.utils import get_now
-from openprocurement.api.models import Contract as BaseContract
-from openprocurement.api.models import Document as BaseDocument
-from openprocurement.api.models import Organization as BaseOrganization
-from openprocurement.api.models import ContactPoint as BaseContactPoint
-from openprocurement.api.models import CPVClassification as BaseCPVClassification
-from openprocurement.api.models import Item as BaseItem
-from openprocurement.api.models import AdditionalClassification as BaseAdditionalClassification
-from openprocurement.api.models import (Model, ListType, Revision, Value,
-                                        IsoDateTimeType)
 from openprocurement.api.validation import validate_items_uniq
-from openprocurement.api.models import (
-    plain_role, schematics_default_role, schematics_embedded_role
+from openprocurement.auctions.core.models import Administrator_role
+from openprocurement.api.models.auction_models.models import (
+    Contract as BaseContract,
+    Document as BaseDocument,
+    Organization as BaseOrganization,
+    ContactPoint as BaseContactPoint,
+    CPVClassification as BaseCPVClassification,
+    Item as BaseItem,
+    AdditionalClassification as BaseAdditionalClassification,
+    plain_role,
+    schematics_default_role,
+    schematics_embedded_role,
+    Model,
+    ListType,
+    Revision,
+    Value,
+    IsoDateTimeType
 )
-from openprocurement.tender.core.models import Administrator_role
 
 contract_create_role = (whitelist(
     'id', 'awardID', 'contractID', 'contractNumber', 'title', 'title_en',

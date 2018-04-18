@@ -5,12 +5,12 @@ from openprocurement.api.utils import (
     APIResource,
 )
 
-from openprocurement.tender.core.utils import optendersresource
+from openprocurement.auctions.core.utils import opresource
 
 
-@optendersresource(name='Tender credentials',
-                   path='/tenders/{tender_id}/extract_credentials',
-                   description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#tender for more info")
+@opresource(name='Auction credentials',
+            path='/auctions/{tender_id}/extract_credentials',
+            description="Open Contracting compatible data exchange format. See http://ocds.open-contracting.org/standard/r/master/#tender for more info")
 class TenderResource(APIResource):
 
     @json_view(permission='extract_credentials')
