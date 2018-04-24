@@ -35,9 +35,10 @@ class TestApiFucntions(unittest.TestCase):
 
         with self.assertRaises(Exception) as cm:
             extract_contract_adapter(self.request, self.contract_id)
-        self.assertEqual(cm.exception.message.status, 410)
-        cm.exception.message.add.assert_called_once_with('url', 'contract_id',
-                                                         'Archived')
+        self.assertEqual(cm.exception.message.errors.status, 410)
+        cm.exception.message.errors.add.assert_called_once_with(
+            'url', 'contract_id', 'Archived'
+        )
 
     @patch('openprocurement.contracting.api.utils.error_handler')
     def test_extract_contract_adapter_404_error(self, mocker_error_handler):
@@ -46,9 +47,10 @@ class TestApiFucntions(unittest.TestCase):
 
         with self.assertRaises(Exception) as cm:
             extract_contract_adapter(self.request, self.contract_id)
-        self.assertEqual(cm.exception.message.status, 404)
-        cm.exception.message.add.assert_called_once_with('url', 'contract_id',
-                                                         'Not Found')
+        self.assertEqual(cm.exception.message.errors.status, 404)
+        cm.exception.message.errors.add.assert_called_once_with(
+            'url', 'contract_id', 'Not Found'
+        )
 
     def test_extract_contract_adapter_success(self):
         self.doc[self.contract_id]['doc_type'] = 'Contract'
@@ -91,10 +93,10 @@ class TestApiFucntions(unittest.TestCase):
 
         with self.assertRaises(Exception) as cm:
             contract_from_data(self.request, dict())
-        self.assertEqual(cm.exception.message.status, 415)
-        cm.exception.message.add.assert_called_once_with('data',
-                                                         'contractType',
-                                                         'Not implemented')
+        self.assertEqual(cm.exception.message.errors.status, 415)
+        cm.exception.message.errors.add.assert_called_once_with(
+            'data', 'contractType', 'Not implemented'
+        )
 
     def test_contract_from_data_success(self):
         test_mock = MagicMock()

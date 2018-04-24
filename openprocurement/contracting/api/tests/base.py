@@ -11,7 +11,7 @@ from couchdb_schematics.document import SchematicsDocument
 from schematics.transforms import whitelist
 from schematics.types import StringType
 from schematics.types.compound import ModelType
-from openprocurement.api.models import (
+from openprocurement.api.models.auction_models.models import (
     Contract as BaseContract,
     Document as BaseDocument,
     plain_role,
